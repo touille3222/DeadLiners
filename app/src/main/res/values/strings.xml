@@ -5,6 +5,9 @@
     <string name="lihat_aktivitas">Lihat Aktivitas</string>
     <string name="nama_aktivitas">Nama Aktivitas</string>
     <string name="masukkan_nama_aktivitas_disini">Masukkan nama aktivitas disini</string>
+    <string name="tanggal_deadline">Tanggal dan jam Deadline</string>
+    <string name="pilih_tanggal">Pilih Tanggal</string>
+    <string name="submit">submit</string>
     <string-array name="spinner_items">
         <item>Penting</item>
         <item>Tidak Penting</item>
