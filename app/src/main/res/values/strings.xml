@@ -3,4 +3,10 @@
     <string name="deadliners">DeadLiners</string>
     <string name="masukkan_aktivitas">Masukkan Aktivitas</string>
     <string name="lihat_aktivitas">Lihat Aktivitas</string>
+    <string name="nama_aktivitas">Nama Aktivitas</string>
+    <string name="masukkan_nama_aktivitas_disini">Masukkan nama aktivitas disini</string>
+    <string-array name="spinner_items">
+        <item>Penting</item>
+        <item>Tidak Penting</item>
+    </string-array>
 </resources>
