@@ -13,6 +13,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val COLUMN_ID = "id"
         private const val COLUMN_NAME = "name"
         private const val COLUMN_PRIORITY = "priority"
+        private const val COLUMN_DATE = "date"
+        private const val COLUMN_CLOCK = "clock"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -21,7 +23,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val SQL_CREATE_ENTRIES = "CREATE TABLE ${TABLE_NAME}" +
                 " (${COLUMN_ID} INTEGER PRIMARY KEY," +
                 " ${COLUMN_NAME} TEXT," +
-                " ${COLUMN_PRIORITY} INT)"
+                " ${COLUMN_PRIORITY} TEXT," +
+                " ${COLUMN_DATE} DATE," +
+                " ${COLUMN_CLOCK} TIMESTAMP)"
         db.execSQL(SQL_CREATE_ENTRIES)
     }
 

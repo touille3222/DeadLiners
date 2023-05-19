@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dbHelper = DatabaseHelper(this)
+        db = dbHelper.writableDatabase
 
         binding.masukkanAktivitasButton.setOnClickListener {
             val intent = Intent(this, InputActivity::class.java)
