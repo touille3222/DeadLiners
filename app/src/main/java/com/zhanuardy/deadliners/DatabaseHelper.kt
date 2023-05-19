@@ -20,16 +20,14 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     override fun onCreate(db: SQLiteDatabase) {
         // Membuat tabel atau inisialisasi skema database
         // Contoh: db.execSQL("CREATE TABLE nama_tabel (kolom1 tipe_data, kolom2 tipe_data);");
-        val SQL_CREATE_ENTRIES = "CREATE TABLE ${TABLE_NAME}" +
-                " (${COLUMN_ID} INTEGER PRIMARY KEY," +
-                " ${COLUMN_NAME} TEXT," +
-                " ${COLUMN_PRIORITY} TEXT," +
-                " ${COLUMN_DATE} DATE," +
-                " ${COLUMN_CLOCK} TIMESTAMP)"
-        db.execSQL(SQL_CREATE_ENTRIES)
+        val createTableQuery = "CREATE TABLE IF NOT EXISTS mytable (id INTEGER PRIMARY KEY, name TEXT)"
+        db.execSQL(createTableQuery)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // Melakukan pembaruan skema jika diperlukan
+        val dropTableQuery = "DROP TABLE IF EXISTS mytable"
+        db.execSQL(dropTableQuery)
+        onCreate(db)
     }
 }
