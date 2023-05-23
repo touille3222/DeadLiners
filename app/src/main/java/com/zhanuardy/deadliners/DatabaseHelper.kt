@@ -8,19 +8,13 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     companion object {
         private const val DATABASE_NAME = "DeadLiners.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "Activity.tb"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_NAME = "name"
-        private const val COLUMN_PRIORITY = "priority"
-        private const val COLUMN_DATE = "date"
-        private const val COLUMN_CLOCK = "clock"
+        private const val DATABASE_VERSION = 4
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         // Membuat tabel atau inisialisasi skema database
         // Contoh: db.execSQL("CREATE TABLE nama_tabel (kolom1 tipe_data, kolom2 tipe_data);");
-        val createTableQuery = "CREATE TABLE IF NOT EXISTS mytable (id INTEGER PRIMARY KEY, name TEXT)"
+        val createTableQuery = "CREATE TABLE IF NOT EXISTS mytable (id INTEGER PRIMARY KEY, nameAktivitas TEXT, deskripsiAktivitas TEXT, valueAktivitas BOOLEAN, dateAktivitas DATE, jamAktivitas TIME)"
         db.execSQL(createTableQuery)
     }
 
