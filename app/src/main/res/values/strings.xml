@@ -8,6 +8,8 @@
     <string name="tanggal_deadline">Tanggal dan jam Deadline</string>
     <string name="pilih_tanggal">Pilih Tanggal</string>
     <string name="submit">submit</string>
+    <string name="deskripsi_aktivitas">Deskripsi Aktivitas</string>
+    <string name="value_aktivitas">Value Aktivitas</string>
     <string-array name="spinner_items">
         <item>Penting</item>
         <item>Tidak Penting</item>

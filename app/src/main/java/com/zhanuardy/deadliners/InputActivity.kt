@@ -2,9 +2,11 @@ package com.zhanuardy.deadliners
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.EditText
@@ -26,6 +28,34 @@ class InputActivity : AppCompatActivity() {
 
         dateAktivitas()
         jamAktivitas()
+        inputData()
+    }
+
+    fun inputData(){
+        binding.submitAktivitasButton.setOnClickListener{
+            val inputnamaText = binding.namaAktivitaseditText.text.toString()
+            val inputdeskripsiText = binding.deskripsiAktivitaseditText.text.toString()
+            val inputvalueText = binding.nilaiAktivitasspinner.selectedItem.toString()
+            dbHelper.addNewActivity(inputnamaText, inputdeskripsiText, inputvalueText)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+//        val contentValues = ContentValues().apply {
+//            put("nameAktivitas", inputnamaText)
+//            put("deskripsiAktivitas", inputdeskripsiText)
+//            put("valueAktivitas", inputvalueText)
+//            // Tambahkan kolom dan nilai data lainnya sesuai skema tabel Anda
+//        }
+//
+//        val tableName = "mytable"
+//
+//        binding.submitAktivitasButton.setOnClickListener{
+//            db.insert(tableName, null, contentValues)
+//            db.close()
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     fun dateAktivitas(){
