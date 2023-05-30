@@ -2,6 +2,7 @@ package com.zhanuardy.deadliners
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -56,5 +57,12 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         // at last we are closing our
         // database after adding database.
         db.close()
+    }
+
+    fun rawQuery(query: String?): Cursor? {
+        val db = this.writableDatabase
+        val mCursor: Cursor = db.rawQuery(query, null)
+        mCursor?.moveToFirst()
+        return mCursor
     }
 }
