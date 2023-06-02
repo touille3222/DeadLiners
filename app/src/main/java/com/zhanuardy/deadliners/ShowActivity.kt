@@ -1,49 +1,42 @@
 package com.zhanuardy.deadliners
 
-import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.zhanuardy.deadliners.databinding.ActivityMainBinding
-import com.zhanuardy.deadliners.databinding.ActivityShowBinding
+import com.zhanuardy.deadliners.adapter.NoteAdapter
+import com.zhanuardy.deadliners.db.DatabaseHelper
+import com.zhanuardy.deadliners.entity.Note
+
 
 class ShowActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityShowBinding
-    private lateinit var dbHelper: DatabaseHelper
-    private lateinit var categoriesList: ArrayList<ActivityDataClass>
-    private lateinit var db: SQLiteDatabase
+    private var NoteArrayList: ArrayList<Note>? = null
+    private var DatabaseHelper: DatabaseHelper? = null
+    private var NoteAdapter: NoteAdapter? = null
+    private lateinit var coursesRV: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityShowBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        dbHelper = DatabaseHelper(this)
-        db = dbHelper.writableDatabase
+        setContentView(R.layout.activity_show)
 
-        // Fetch categories
-        var categoriesCursor: Cursor? = dbHelper.rawQuery("SELECT category_id, category_name FROM categories")
-        var categoriesSize: Int = categoriesCursor!!.count
-        Log.d("listCategories()", "categoriesSize=" + categoriesSize)
+        // initializing our all variables.
+        NoteArrayList = ArrayList()
+        DatabaseHelper = DatabaseHelper(this@ShowActivity)
 
-        // Add a list of categories
-        categoriesList = ArrayList<ActivityDataClass>()
-        while (categoriesCursor.moveToNext()) {
-            val categoryId = categoriesCursor.getInt(0)
-            val categoryName = categoriesCursor.getString(1)
-            Log.d("listCategories()", "categoryId=" + categoryId + " categoryName=" + categoryName)
-            categoriesList.add(ActivityDataClass(categoryId, categoryName))
+        // getting our course array
+        // list from db handler class.
+        NoteArrayList = DatabaseHelper!!.readCourses()
 
-        }
+        // on below line passing our array list to our adapter class.
+        NoteAdapter = NoteAdapter(NoteArrayList!!, this@ShowActivity)
+        coursesRV = findViewById<RecyclerView>(R.id.rv_notes)
 
-        // Add to list
-        recycler_view.adapter = Adapter(categoriesList) {
-            categoriesList[it]
-        }
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.setHasFixedSize(true)
+        // setting layout manager for our recycler view.
+        val linearLayoutManager =
+            LinearLayoutManager(this@ShowActivity, RecyclerView.VERTICAL, false)
+        coursesRV.layoutManager = linearLayoutManager
+
+        // setting our adapter to recycler view.
+        coursesRV.adapter = NoteAdapter
     }
 }

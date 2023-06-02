@@ -2,22 +2,37 @@ package com.zhanuardy.deadliners
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.widget.EditText
 import com.zhanuardy.deadliners.databinding.ActivityInputBinding
 import com.zhanuardy.deadliners.databinding.ActivityMainBinding
+import com.zhanuardy.deadliners.db.DatabaseContract
+import com.zhanuardy.deadliners.db.DatabaseHelper
+import com.zhanuardy.deadliners.db.DateTimeModel
+import com.zhanuardy.deadliners.entity.Note
 import java.util.*
 
 class InputActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInputBinding
     private lateinit var dbHelper: DatabaseHelper
     private lateinit var db: SQLiteDatabase
+    private var note: Note? = null
+    private var position: Int = 0
+    var selectedDate: String? = null
+    var selectedTime: String? = null
+
+    companion object {
+        const val EXTRA_NOTE = "extra_note"
+        const val EXTRA_POSITION = "extra_position"
+        const val RESULT_ADD = 101
+        const val RESULT_UPDATE = 201
+        const val RESULT_DELETE = 301
+        const val ALERT_DIALOG_CLOSE = 10
+        const val ALERT_DIALOG_DELETE = 20
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +51,9 @@ class InputActivity : AppCompatActivity() {
             val inputnamaText = binding.namaAktivitaseditText.text.toString()
             val inputdeskripsiText = binding.deskripsiAktivitaseditText.text.toString()
             val inputvalueText = binding.nilaiAktivitasspinner.selectedItem.toString()
-            dbHelper.addNewActivity(inputnamaText, inputdeskripsiText, inputvalueText)
+            val inputDate=selectedDate
+            val inputTime=selectedTime
+            dbHelper.addNewActivity(inputnamaText, inputdeskripsiText, inputvalueText, inputDate, inputTime)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -66,7 +83,7 @@ class InputActivity : AppCompatActivity() {
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
-                val selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                selectedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 binding.dateAktivitasEditText.setText(selectedDate)
             }, year, month, day)
 
@@ -81,7 +98,7 @@ class InputActivity : AppCompatActivity() {
             val minute = calendar.get(Calendar.MINUTE)
 
             val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
-                val selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
+                selectedTime = String.format("%02d:%02d", selectedHour, selectedMinute)
                 binding.jameditTextTime.setText(selectedTime)
             }, hour, minute, true)
 

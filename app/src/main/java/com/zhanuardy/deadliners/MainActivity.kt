@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.zhanuardy.deadliners.databinding.ActivityMainBinding
+import com.zhanuardy.deadliners.db.DatabaseHelper
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

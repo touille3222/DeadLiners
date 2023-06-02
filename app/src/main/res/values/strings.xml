@@ -14,4 +14,10 @@
         <item>Penting</item>
         <item>Tidak Penting</item>
     </string-array>
+    <string name="description">Deskripsi</string>
+    <string name="delete">Hapus</string>
+    <string name="date">Date</string>
+    <string name="title">Judul</string>
+    <string name="pilih_tanggal_dan_jam">Pilih Tanggal dan Jam</string>
+    <string name="pilih_jam">Pilih Jam</string>
 </resources>
