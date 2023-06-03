@@ -9,6 +9,7 @@ data class Note(
     var title: String? = null,
     var description: String? = null,
     var value: String? = null,
+    var timing: String? = null,
     var date: String? = null,
     var time: String? = null
 ) : Parcelable

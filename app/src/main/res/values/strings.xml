@@ -10,14 +10,19 @@
     <string name="submit">submit</string>
     <string name="deskripsi_aktivitas">Deskripsi Aktivitas</string>
     <string name="value_aktivitas">Value Aktivitas</string>
-    <string-array name="spinner_items">
+    <string-array name="spinnervalue_items">
         <item>Penting</item>
         <item>Tidak Penting</item>
     </string-array>
+    <string-array name="spinnertiming_items">
+        <item>Mendesak</item>
+        <item>Tidak Mendesak</item>
+    </string-array>
     <string name="description">Deskripsi</string>
-    <string name="delete">Hapus</string>
+    <string name="delete">Delete</string>
     <string name="date">Date</string>
     <string name="title">Judul</string>
     <string name="pilih_tanggal_dan_jam">Pilih Tanggal dan Jam</string>
     <string name="pilih_jam">Pilih Jam</string>
+    <string name="waktu_aktivitas">Waktu Aktivitas</string>
 </resources>

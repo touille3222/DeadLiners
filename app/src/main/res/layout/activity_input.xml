@@ -32,11 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="60dp"
         android:text="@string/nama_aktivitas"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="MissingConstraints" />
@@ -100,11 +100,37 @@
         android:layout_width="354dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
-        android:entries="@array/spinner_items"
+        android:entries="@array/spinnervalue_items"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nilaiAktivitasText"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/timingAktivitasText"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="48dp"
+        android:text="@string/waktu_aktivitas"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nilaiAktivitasspinner"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/timingAktivitasspinner"
+        android:layout_width="354dp"
+        android:layout_height="38dp"
+        android:entries="@array/spinnertiming_items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timingAktivitasText"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -117,9 +143,9 @@
         android:text="@string/tanggal_deadline"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nilaiAktivitasspinner"
+        app:layout_constraintTop_toBottomOf="@+id/timingAktivitasspinner"
         tools:ignore="MissingConstraints" />
 
     <EditText

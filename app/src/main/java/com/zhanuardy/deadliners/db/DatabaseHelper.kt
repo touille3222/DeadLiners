@@ -5,8 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.zhanuardy.deadliners.db.DatabaseContract.NoteColumns.Companion.TABLE_NAME
 import com.zhanuardy.deadliners.db.DatabaseContract.NoteColumns
+import com.zhanuardy.deadliners.db.DatabaseContract.NoteColumns.Companion.TABLE_NAME
 import com.zhanuardy.deadliners.entity.Note
 
 internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -15,13 +15,14 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
         private const val DATABASE_NAME = "dbactivity"
 
-        private const val DATABASE_VERSION = 5
+        private const val DATABASE_VERSION = 6
 
         private const val SQL_CREATE_TABLE_NOTE = "CREATE TABLE $TABLE_NAME" +
                 " (${NoteColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " ${NoteColumns.TITLE} TEXT NOT NULL," +
                 " ${NoteColumns.DESCRIPTION} TEXT NOT NULL," +
                 " ${NoteColumns.VALUE} TEXT NOT NULL," +
+                " ${NoteColumns.TIMING} TEXT NOT NULL," +
                 " ${NoteColumns.DATE} TEXT NOT NULL," +
                 " ${NoteColumns.TIME} TEXT NOT NULL)"
     }
@@ -42,7 +43,7 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         onCreate(db)
     }
 
-    fun addNewActivity(nameAktivitas: String?, deskripsiAktivitas: String?, valueAktivitas: String?, dateAktivitas: String?, timeAktivitas: String?) {
+    fun addNewActivity(nameAktivitas: String?, deskripsiAktivitas: String?, valueAktivitas: String?, timingAktivitas: String?, dateAktivitas: String?, timeAktivitas: String?) {
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
@@ -61,6 +62,7 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         values.put("TITLE", nameAktivitas)
         values.put("DESCRIPTION", deskripsiAktivitas)
         values.put("VALUE", valueAktivitas)
+        values.put("TIMING", timingAktivitas)
         values.put("DATE", dateAktivitas)
         values.put("TIME", timeAktivitas)
 
@@ -99,7 +101,8 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
                         cursorCourses.getString(2),
                         cursorCourses.getString(3),
                         cursorCourses.getString(4),
-                        cursorCourses.getString(5)
+                        cursorCourses.getString(5),
+                        cursorCourses.getString(6)
                     )
                 )
             } while (cursorCourses.moveToNext())
@@ -109,6 +112,18 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         // and returning our array list.
         cursorCourses.close()
         return NoteArrayList
+    }
+
+    fun deleteCourse(courseName: String) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        val db = this.writableDatabase
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_NAME, "name=?", arrayOf(courseName))
+        db.close()
     }
 
 //    fun insertDateTime(dateTime: DateTimeModel) {
