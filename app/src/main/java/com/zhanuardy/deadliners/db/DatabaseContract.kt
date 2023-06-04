@@ -14,6 +14,7 @@ internal class DatabaseContract {
             const val TIMING = "timing"
             const val DATE = "date"
             const val TIME = "time"
+            const val KUADRAN = "kuadran"
         }
 
     }

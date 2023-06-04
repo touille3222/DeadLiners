@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".InputActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,27 +27,15 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/masukkanAktivitasButton"
-        android:layout_width="228dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="144dp"
-        android:text="@string/masukkan_aktivitas"
+        android:id="@+id/deleteAktivitasButton"
+        android:layout_width="301dp"
+        android:layout_height="45dp"
+        android:text="@string/delete"
         android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <Button
-        android:id="@+id/lihatAktivitasButton"
-        android:layout_width="228dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="96dp"
-        android:text="@string/lihat_aktivitas"
-        android:backgroundTint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/masukkanAktivitasButton" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.045" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

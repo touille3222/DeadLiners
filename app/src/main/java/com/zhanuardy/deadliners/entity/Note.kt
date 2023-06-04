@@ -11,5 +11,6 @@ data class Note(
     var value: String? = null,
     var timing: String? = null,
     var date: String? = null,
-    var time: String? = null
+    var time: String? = null,
+    var kuadran: String? = null
 ) : Parcelable

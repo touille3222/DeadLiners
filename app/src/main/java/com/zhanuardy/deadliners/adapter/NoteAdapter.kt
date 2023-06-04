@@ -1,12 +1,13 @@
 package com.zhanuardy.deadliners.adapter
 
-import android.R
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.zhanuardy.deadliners.UpdateDeleteActivity
 import com.zhanuardy.deadliners.entity.Note
 
 
@@ -34,9 +35,25 @@ class NoteAdapter(NoteArrayList: ArrayList<Note>, context: Context) :
         // on below line we are setting data
         // to our views of recycler view item.
         val modal: Note = NoteArrayList[position]
-        holder.titleTV.setText(modal.title)
-        holder.descriptionTV.setText(modal.description)
-        holder.dateTV.setText(modal.date)
+        holder.titleTV.text = modal.title
+        holder.descriptionTV.text = modal.description
+        holder.dateTV.text = modal.date
+        holder.kuadranTV.text = modal.kuadran
+        holder.itemView.setOnClickListener { // on below line we are calling an intent.
+            val i = Intent(context, UpdateDeleteActivity::class.java)
+
+            // below we are passing all our values.
+            i.putExtra("name", modal.title)
+            i.putExtra("description", modal.description)
+            i.putExtra("value", modal.value)
+            i.putExtra("timing", modal.timing)
+            i.putExtra("date", modal.date)
+            i.putExtra("time", modal.time)
+            i.putExtra("kuadran", modal.kuadran)
+
+            // starting our activity.
+            context.startActivity(i)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -49,12 +66,14 @@ class NoteAdapter(NoteArrayList: ArrayList<Note>, context: Context) :
         val titleTV: TextView
         val descriptionTV: TextView
         val dateTV: TextView
+        val kuadranTV: TextView
 
         init {
             // initializing our text views
             titleTV = itemView.findViewById<TextView>(com.zhanuardy.deadliners.R.id.tv_item_title)
             descriptionTV = itemView.findViewById<TextView>(com.zhanuardy.deadliners.R.id.tv_item_description)
             dateTV = itemView.findViewById<TextView>(com.zhanuardy.deadliners.R.id.tv_item_date)
+            kuadranTV = itemView.findViewById<TextView>(com.zhanuardy.deadliners.R.id.tv_item_kuadran)
         }
     }
 }

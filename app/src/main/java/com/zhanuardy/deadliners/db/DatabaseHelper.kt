@@ -15,7 +15,7 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
         private const val DATABASE_NAME = "dbactivity"
 
-        private const val DATABASE_VERSION = 6
+        private const val DATABASE_VERSION = 7
 
         private const val SQL_CREATE_TABLE_NOTE = "CREATE TABLE $TABLE_NAME" +
                 " (${NoteColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -24,7 +24,8 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
                 " ${NoteColumns.VALUE} TEXT NOT NULL," +
                 " ${NoteColumns.TIMING} TEXT NOT NULL," +
                 " ${NoteColumns.DATE} TEXT NOT NULL," +
-                " ${NoteColumns.TIME} TEXT NOT NULL)"
+                " ${NoteColumns.TIME} TEXT NOT NULL," +
+                " ${NoteColumns.KUADRAN} TEXT NOT NULL)"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -49,6 +50,7 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         // our sqlite database and calling writable method
         // as we are writing data in our database.
         val db = this.writableDatabase
+        val kuadranAktivitas:Int
 
         // on below line we are creating a
         // variable for content values.
@@ -65,6 +67,20 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         values.put("TIMING", timingAktivitas)
         values.put("DATE", dateAktivitas)
         values.put("TIME", timeAktivitas)
+
+        if(valueAktivitas=="Penting" && timingAktivitas=="Mendesak"){
+            kuadranAktivitas=1
+        }else if(valueAktivitas=="Penting" && timingAktivitas=="Tidak Mendesak"){
+            kuadranAktivitas=2
+        }else if(valueAktivitas=="Tidak Penting" && timingAktivitas=="Mendesak"){
+            kuadranAktivitas=3
+        }else if(valueAktivitas=="Tidak Penting" && timingAktivitas=="Tidak Mendesak"){
+            kuadranAktivitas=4
+        }else{
+            kuadranAktivitas=404
+        }
+
+        values.put("KUADRAN", kuadranAktivitas)
 
         // after adding all values we are passing
         // content values to our table.
@@ -102,7 +118,8 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
                         cursorCourses.getString(3),
                         cursorCourses.getString(4),
                         cursorCourses.getString(5),
-                        cursorCourses.getString(6)
+                        cursorCourses.getString(6),
+                        cursorCourses.getString(7)
                     )
                 )
             } while (cursorCourses.moveToNext())
@@ -114,6 +131,27 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         return NoteArrayList
     }
 
+//    fun updateCourse(courseName: String, nameAktivitas: String?, deskripsiAktivitas: String?, valueAktivitas: String?, timingAktivitas: String?, dateAktivitas: String?, timeAktivitas: String?) {
+//
+//        // calling a method to get writable database.
+//        val db = this.writableDatabase
+//        val values = ContentValues()
+//
+//        // on below line we are passing all values
+//        // along with its key and value pair.
+//        values.put("TITLE", nameAktivitas)
+//        values.put("DESCRIPTION", deskripsiAktivitas)
+//        values.put("VALUE", valueAktivitas)
+//        values.put("TIMING", timingAktivitas)
+//        values.put("DATE", dateAktivitas)
+//        values.put("TIME", timeAktivitas)
+//
+//        // on below line we are calling a update method to update our database and passing our values.
+//        // and we are comparing it with name of our course which is stored in original name variable.
+//        db.update(TABLE_NAME, values, "TITLE=?", arrayOf(courseName))
+//        db.close()
+//    }
+
     fun deleteCourse(courseName: String) {
 
         // on below line we are creating
@@ -122,7 +160,7 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
 
         // on below line we are calling a method to delete our
         // course and we are comparing it with our course name.
-        db.delete(TABLE_NAME, "name=?", arrayOf(courseName))
+        db.delete(TABLE_NAME, "TITLE=?", arrayOf(courseName))
         db.close()
     }
 

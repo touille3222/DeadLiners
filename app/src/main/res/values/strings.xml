@@ -25,4 +25,6 @@
     <string name="pilih_tanggal_dan_jam">Pilih Tanggal dan Jam</string>
     <string name="pilih_jam">Pilih Jam</string>
     <string name="waktu_aktivitas">Waktu Aktivitas</string>
+    <string name="kuadran">Kuadran</string>
+    <string name="kuadranTeks">Kuadran:</string>
 </resources>
