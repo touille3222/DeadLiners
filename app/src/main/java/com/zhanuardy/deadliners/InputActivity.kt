@@ -41,22 +41,6 @@ class InputActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-//        val contentValues = ContentValues().apply {
-//            put("nameAktivitas", inputnamaText)
-//            put("deskripsiAktivitas", inputdeskripsiText)
-//            put("valueAktivitas", inputvalueText)
-//            // Tambahkan kolom dan nilai data lainnya sesuai skema tabel Anda
-//        }
-//
-//        val tableName = "mytable"
-//
-//        binding.submitAktivitasButton.setOnClickListener{
-//            db.insert(tableName, null, contentValues)
-//            db.close()
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
     fun dateAktivitas(){

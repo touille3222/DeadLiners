@@ -131,27 +131,6 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         return NoteArrayList
     }
 
-//    fun updateCourse(courseName: String, nameAktivitas: String?, deskripsiAktivitas: String?, valueAktivitas: String?, timingAktivitas: String?, dateAktivitas: String?, timeAktivitas: String?) {
-//
-//        // calling a method to get writable database.
-//        val db = this.writableDatabase
-//        val values = ContentValues()
-//
-//        // on below line we are passing all values
-//        // along with its key and value pair.
-//        values.put("TITLE", nameAktivitas)
-//        values.put("DESCRIPTION", deskripsiAktivitas)
-//        values.put("VALUE", valueAktivitas)
-//        values.put("TIMING", timingAktivitas)
-//        values.put("DATE", dateAktivitas)
-//        values.put("TIME", timeAktivitas)
-//
-//        // on below line we are calling a update method to update our database and passing our values.
-//        // and we are comparing it with name of our course which is stored in original name variable.
-//        db.update(TABLE_NAME, values, "TITLE=?", arrayOf(courseName))
-//        db.close()
-//    }
-
     fun deleteCourse(courseName: String) {
 
         // on below line we are creating
@@ -164,13 +143,4 @@ internal class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATA
         db.close()
     }
 
-//    fun insertDateTime(dateTime: DateTimeModel) {
-//        val values = ContentValues()
-//        values.put("DATE", dateTime.date)
-//        values.put("TIME", dateTime.time)
-//
-//        val db = writableDatabase
-//        db.insert(TABLE_NAME, null, values)
-//        db.close()
-//    }
 }
