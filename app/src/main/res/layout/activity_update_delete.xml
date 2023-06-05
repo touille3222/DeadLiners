@@ -31,7 +31,7 @@
         android:layout_width="301dp"
         android:layout_height="45dp"
         android:text="@string/delete"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#D30E0E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
